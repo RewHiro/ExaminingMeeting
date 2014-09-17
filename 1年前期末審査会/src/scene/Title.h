@@ -3,6 +3,7 @@
 #include "../lib/random.hpp"
 #include <vector>
 #include <memory>
+#include <list>
 
 #define TitleDebug FALSE
 
@@ -34,7 +35,7 @@ private:
 	//CBullet *bullet[BULLET_NUM];
 
 #else
-	std::vector<std::unique_ptr<Object>>m_bullet;
+	std::list<std::unique_ptr<Object>>m_bullet;
 
 #endif
 	void ReadyScene();				//@‘JˆÚ‚·‚é‚Ü‚Å‚Ìˆ—

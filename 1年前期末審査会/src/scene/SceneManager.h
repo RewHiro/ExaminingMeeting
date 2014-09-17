@@ -4,7 +4,7 @@
 #include <memory>
 
 //========================================
-//シーンクラス
+//シーンクラス(基底クラス)
 //========================================
 
 class CScene{
@@ -33,6 +33,7 @@ public:
 		RESLUT
 	};
 
+	//　インスタンスの生成
 	static CSceneManager *GetInstance(){
 		if (!m_instatnce){
 			m_instatnce = new CSceneManager();
@@ -40,7 +41,7 @@ public:
 		return m_instatnce;
 	}
 	~CSceneManager();
-	void Update(AppEnv &, Random &);								//　更新
+	void Update(AppEnv &, Random &);					//　更新
 	void Draw(AppEnv &);								//　描画
 	static void SlectScene(Scene next_scene);			//　遷移したいシーンを渡す関数
 
@@ -61,7 +62,7 @@ private:
 	Scene m_old_scene;						//　遷移する前のシーン
 	State m_state;							//　現在の状態
 	
-	void Transition();
+	void Transition(Random &random);
 
 	// シングルトン
 	CSceneManager();

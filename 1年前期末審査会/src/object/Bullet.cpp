@@ -73,8 +73,7 @@ void CBullet::Move(AppEnv &app_env){
 			}
 			break;
 		}
-		m_pos.x() += m_vec.x();
-		m_pos.y() += m_vec.y();
+		m_pos += m_vec;
 	}
 }
 

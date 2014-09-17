@@ -3,11 +3,10 @@
 #include "../lib/random.hpp"
 #include <vector>
 #include <memory>
-
-
+#include <list>
 
 //========================================
-//オブジェクトクラス
+//オブジェクトクラス(基底クラス)
 //========================================
 
 class Object{
@@ -31,9 +30,25 @@ public:
 		else {
 			return false;
 		}
-	};
+	}
+	virtual Vec2f GetPos(){
+		return m_pos;
+	}
+
+	virtual Vec2f GetR(){
+		return m_r;
+	}
+
+	virtual void isHit(){
+		m_ishit = true;
+	}
+
+	virtual State GetState(){
+		return m_state;
+	}
 
 protected:
+	bool m_ishit;
 	int m_alpha;
 	int m_hp;
 	float m_alphaf;

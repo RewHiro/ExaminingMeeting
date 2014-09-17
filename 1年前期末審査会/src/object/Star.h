@@ -4,6 +4,8 @@ class CStar : public Object{
 public:
 	CStar(Random &);
 	~CStar();
+	void Update(AppEnv &, Random &);
+	void Draw(AppEnv &);
 
 private:
 	int m_speed;
@@ -18,9 +20,9 @@ private:
 		FASTER
 	};
 	SpeedType m_speed_type;
-
-	void Update(AppEnv &, Random &);
-	void Draw(AppEnv &);
-	void Move();
+	void Move();								//　移動処理
+	void Reset(Random &);						//　再設定
+	void RunOut();								//　タスク終了処理
+	void AlphaValUpdate();						//　アルファ値の更新
 };
 

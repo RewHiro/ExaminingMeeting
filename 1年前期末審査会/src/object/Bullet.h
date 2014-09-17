@@ -1,7 +1,5 @@
 #pragma once
 #include "Object.h"
-#include <vector>
-#include <memory>
 
 //========================================
 //弾クラス
@@ -48,7 +46,7 @@ private:
 	Vec2f m_diff;
 	Vec2f m_copy_pos;
 
-	std::vector<std::unique_ptr<Object>>m_fireworks;
+	std::list<std::unique_ptr<Object>>m_fireworks;
 
 	void Move(AppEnv &);		//　移動処理
 	void RunOut();				//　タスク終了処理

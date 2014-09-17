@@ -15,14 +15,14 @@ CSceneManager::~CSceneManager(){
 }
 
 //@‘JˆÚˆ—
-void CSceneManager::Transition(){
+void CSceneManager::Transition(Random &random){
 	m_scene.reset();
 	switch (m_now_scene){
 	case Scene::TITLE:
 		m_scene = std::make_unique<CTitle>();
 		break;
 	case Scene::STAGE:
-		m_scene = std::make_unique<CStage>();
+		m_scene = std::make_unique<CStage>(random);
 		break;
 	case Scene::GAMECLEAR:
 		break;
@@ -38,7 +38,7 @@ void CSceneManager::Transition(){
 void CSceneManager::Update(AppEnv &app_env,Random &random){
 	switch (m_state){
 	case State::INIT:
-		Transition();
+		Transition(random);
 		break;
 
 	case State::UPDATE:

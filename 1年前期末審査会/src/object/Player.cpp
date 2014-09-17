@@ -2,6 +2,8 @@
 #include "../scene/SceneManager.h"
 #include "Bullet.h"
 
+ArrayUpObj CPlayer::m_bullet;
+
 const int SPEED = 10;
 const int SHOT_TIME = 10;
 
@@ -21,6 +23,7 @@ void CPlayer::Update(AppEnv &app_env,Random &random){
 	Move(app_env);
 	Shot(app_env);
 	ShotUpdate(app_env,random);
+	Hit();
 }
 
 //Å@ï`âÊ
@@ -69,8 +72,7 @@ void CPlayer::Move(AppEnv &app_env){
 		else{
 			m_vec.y() = 0;
 		}
-		m_pos.x() += m_vec.x();
-		m_pos.y() += m_vec.y();
+		m_pos += m_vec;
 	}
 }
 
@@ -116,6 +118,16 @@ void CPlayer::Shot(AppEnv &app_env){
 		}
 		else{
 			m_shot_count = 0;
+		}
+	}
+}
+
+void CPlayer::Hit(){
+	if (m_state != State::LIVE){ return; }
+	else if (m_state == State::LIVE){
+		if (m_ishit){
+			m_hp -= 20;
+			m_ishit = false;
 		}
 	}
 }

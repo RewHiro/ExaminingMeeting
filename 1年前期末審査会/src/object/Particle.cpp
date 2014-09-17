@@ -36,8 +36,7 @@ void CFireWorks::Draw(AppEnv &app_env){
 
 //　移動処理
 void CFireWorks::Move(){
-	m_pos.x() += m_vec.x();
-	m_pos.y() += m_vec.y();
+	m_pos += m_vec;
 }
 
 //　タスク終了処理

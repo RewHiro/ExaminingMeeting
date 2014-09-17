@@ -23,4 +23,5 @@ public:
 	static const Media *title_bgm;
 	static const Media *title_se;
 	static const Media *fireworks_se[1];
+	static const Media *stage_bgm[1];
 };
