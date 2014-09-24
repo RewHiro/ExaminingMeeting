@@ -1,8 +1,11 @@
 #include "Player.h"
 #include "../scene/SceneManager.h"
 #include "Bullet.h"
+#include "../Load.h"
+#include "../scene/Stage.h"
+#include "enemy\Enemy.h"
 
-ArrayUpObj CPlayer::m_bullet;
+//std::list<std::shared_ptr<Object>> CPlayer::m_bullet;
 
 const int SPEED = 10;
 const int SHOT_TIME = 10;
@@ -16,6 +19,7 @@ CPlayer::CPlayer() :m_color(color256(128, 0, 128)),m_shot_count(0){
 
 
 CPlayer::~CPlayer(){
+	CLoad::stage_bgm[0]->stop();
 }
 
 //Å@çXêV
@@ -89,7 +93,7 @@ void CPlayer::Death(){
 void CPlayer::CreateBullet(){
 	if (m_state == State::NONE){ return; }
 	else if (m_state == State::LIVE){
-		m_bullet.emplace_back(std::make_unique<CBullet>(m_pos, color256(255,255,0), static_cast<float>(M_PI_2), Vec2f(8.0f, 8.0f), CBullet::Type::NORMAL, 15.0f, Vec2f(0, 0), CBullet::Scene::STAGE));
+		m_bullet.emplace_back(std::make_shared<CBullet>(m_pos, color256(255,255,0), static_cast<float>(M_PI_2), Vec2f(8.0f, 8.0f), CBullet::Type::NORMAL, 15.0f, Vec2f(0, 0), CBullet::Scene::STAGE));
 	}
 }
 

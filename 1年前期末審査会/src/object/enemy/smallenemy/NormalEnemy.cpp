@@ -13,6 +13,7 @@ CNormalEnemy::~CNormalEnemy(){
 
 void CNormalEnemy::Update(AppEnv &app_env,Random &random){
 	Move();
+	CSmallEnemy::Hit();
 	CSmallEnemy::Death();
 	CSmallEnemy::DeathEffect(random);
 	CSmallEnemy::FireWorksUpdate(app_env, random);

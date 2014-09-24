@@ -12,7 +12,9 @@
 class Object{
 public:
 	Object(){};
-	virtual ~Object(){};
+	virtual ~Object() = default;
+
+	//　状態の種類
 	enum class State{
 		NONE,
 		LIVE,
@@ -21,9 +23,13 @@ public:
 		EFFECT,
 		MOVE
 	};
+	//　更新
 	virtual void Update(AppEnv &,Random &) = 0;
+	//　描画
 	virtual void Draw(AppEnv &) = 0;
-	virtual bool isRunOut(){
+	
+	//　タスクが終了処理
+	bool isRunOut(){
 		if (m_state == State::NONE){
 			return true;
 		}
@@ -31,24 +37,29 @@ public:
 			return false;
 		}
 	}
-	virtual Vec2f GetPos(){
+
+	//　座標を取得
+	Vec2f GetPos(){
 		return m_pos;
 	}
 
-	virtual Vec2f GetR(){
+	//　半径を取得
+	Vec2f GetR(){
 		return m_r;
 	}
 
-	virtual void isHit(){
-		m_ishit = true;
-	}
-
-	virtual State GetState(){
+	//　状態を取得
+	State GetState(){
 		return m_state;
 	}
 
+	//　当たりをセット
+	void SetHit(bool hit){
+		m_ishit = hit;
+	}
+
 protected:
-	bool m_ishit;
+	bool m_ishit = false;
 	int m_alpha;
 	int m_hp;
 	float m_alphaf;
@@ -59,4 +70,5 @@ protected:
 	State m_state;
 };
 
-typedef std::vector<std::unique_ptr<Object>> ArrayUpObj;
+typedef std::vector<std::unique_ptr<Object>> ArrayVec;
+typedef std::vector<std::shared_ptr<Object>> ArrayList;

@@ -52,5 +52,6 @@ private:
 	void RunOut();				//　タスク終了処理
 	void DeathEffect(Random &);			//　消滅したときのエフェクト
 	void Effect(AppEnv &,Random &);		//　エフェクトの処理
+	void Hit();
 };
 

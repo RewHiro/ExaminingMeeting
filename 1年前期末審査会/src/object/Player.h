@@ -4,7 +4,7 @@ class CPlayer : public Object{
 public:
 	CPlayer();
 	~CPlayer();
-	static ArrayUpObj m_bullet;
+	std::list<std::shared_ptr<Object>>m_bullet;
 
 	void Update(AppEnv &, Random &);		//　更新
 	void Draw(AppEnv &);					//　描画
@@ -17,6 +17,6 @@ private:
 	void CreateBullet();					//　弾の生成
 	void ShotUpdate(AppEnv &, Random &);	//　弾の更新
 	void Shot(AppEnv &);					//　弾の発射処理
-	void Hit();
+	void Hit();								//　当たったときの処理
 };
 

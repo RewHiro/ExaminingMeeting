@@ -12,10 +12,10 @@ protected:
 	std::vector<std::unique_ptr<Object>>m_fireworks;
 	Color m_color;
 
-
-	virtual void Death();						//　死亡処理
-	virtual void DeathEffect(Random &);					//　死んだときのエフェクト
-	virtual void FireWorksUpdate(AppEnv &,Random &);
+	void Death();								//　死亡処理
+	void DeathEffect(Random &);					//　死んだときのエフェクト
+	void FireWorksUpdate(AppEnv &,Random &);
+	void Hit();
 	static const int FIREWORKS_NUM = 150;
 
 };

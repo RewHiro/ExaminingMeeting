@@ -3,11 +3,12 @@
 #include "../object/Star.h"
 #include "../Load.h"
 #include "../object/enemy/smallenemy/NormalEnemy.h"
-#include "../CollisionManager.h"
+#include "../Collision.h"
+#include "../object/Bullet.h"
 
-std::unique_ptr<Object>CStage::m_player;
-std::vector<std::unique_ptr<Object>>CStage::m_star;
-std::list<std::unique_ptr<Object>>CStage::m_enemy;
+//std::unique_ptr<Object>CStage::m_player;
+//std::vector<std::unique_ptr<Object>>CStage::m_star;
+//std::list<std::shared_ptr<Object>>CStage::m_enemy;
 
 const int STAR_NUM = 80;
 
@@ -35,6 +36,7 @@ void CStage::Update(AppEnv &app_env,Random &random){
 	}
 	m_player->Update(app_env,random);
 	CreateEnemy();
+	Collision();
 	if (app_env.isPushKey(GLFW_KEY_ENTER)){
 		CSceneManager::SlectScene(CSceneManager::Scene::TITLE);
 	}
@@ -53,6 +55,30 @@ void CStage::Draw(AppEnv &app_env){
 
 void CStage::CreateEnemy(){
 	if (count == 60){
-		m_enemy.emplace_back(std::make_unique<CNormalEnemy>(Vec2f(0, 400)));
+		m_enemy.emplace_back(std::make_shared<CNormalEnemy>(Vec2f(0, 400)));
+	}
+}
+
+void CStage::Collision(){
+	for (auto &Enemy : m_enemy){
+		if (Enemy->GetState() == Object::State::LIVE){
+			if (m_player->GetState() == Object::State::LIVE){
+				if (Collision::isCollision(Enemy->GetPos(), m_player->GetPos(), Enemy->GetR(), m_player->GetR())){
+					Enemy->SetHit(true);
+				}
+			}
+		}
+	}
+	for (auto &Enemy : m_enemy){
+		if (Enemy->GetState() == Object::State::LIVE){
+			for (auto & Bullet : m_player->m_bullet){
+				if (Bullet->GetState() == Object::State::LIVE){
+					if (Collision::isCollision(Enemy->GetPos(), Bullet->GetPos(), Enemy->GetR(), Bullet->GetR())){
+						Enemy->SetHit(true);
+						Bullet->SetHit(true);
+					}
+				}
+			}
+		}
 	}
 }

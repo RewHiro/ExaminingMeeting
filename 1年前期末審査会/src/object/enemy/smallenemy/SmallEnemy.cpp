@@ -66,3 +66,11 @@ void CSmallEnemy::FireWorksUpdate(AppEnv &app_env,Random &random){
 		}
 	}
 }
+
+void CSmallEnemy::Hit(){
+	if (!m_ishit){ return; }
+	else if (m_ishit){
+		m_hp -= 20;
+		m_ishit = false;
+	}
+}

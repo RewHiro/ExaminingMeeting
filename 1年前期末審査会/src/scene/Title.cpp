@@ -71,7 +71,7 @@ void CTitle::ReadyScene(){
 
 //Å@íeÇÃê∂ê¨
 void CTitle::CreateBullet(Vec2f &target_pos,Vec2f &shot_pos){
-	float theta = CMath::GetAngle(Vec2f(WIDTH / 2, -HEIGHT / 2), target_pos, shot_pos);
+	float theta = Math::GetAngle(Vec2f(WIDTH / 2, -HEIGHT / 2), target_pos, shot_pos);
 	m_bullet.emplace_back(std::make_unique<CBullet>(shot_pos, Color(1, 1, 1), theta, Vec2f(8.0f, 8.0f), CBullet::Type::NORMAL, 8.0f,target_pos, CBullet::Scene::TITLE));
 }
 

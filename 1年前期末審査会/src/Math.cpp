@@ -2,6 +2,7 @@
 #include <cmath>
 
 namespace Math{
+
 	//@Šp“x‚ğæ“¾
 	float GetAngle(const Vec2f &vec_a, const Vec2f &vec_b, const Vec2f &origin, bool is_degree){
 

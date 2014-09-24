@@ -14,7 +14,7 @@ CBullet::CBullet(const Vec2f &pos, const Color &color, const float theta, const 
 	const Type type, const float speed, 
 	const Vec2f &obj, const Scene scene) :
 	m_color(color), m_theta(theta), m_type(type), m_speed(speed), m_scene(scene),
-	m_d(CMath::Get2Distancef(pos, obj)), m_diff(CMath::GetDiff(obj, pos)), m_copy_pos(obj){
+	m_d(Math::Get2Distancef(pos, obj)), m_diff(Math::GetDiff(obj, pos)), m_copy_pos(obj){
 
 	m_pos = pos;
 	m_r = r;
@@ -43,6 +43,7 @@ void CBullet::Update(AppEnv &app_env,Random &random){
 		break;
 	}
 	Move(app_env);
+	Hit();
 	RunOut();
 
 }
@@ -67,7 +68,7 @@ void CBullet::Move(AppEnv &app_env){
 	else if (m_state == State::LIVE){
 		switch (m_scene){
 		case Scene::TITLE:
-			m_d = CMath::Get2Distancef(m_copy_pos, m_pos);
+			m_d = Math::Get2Distancef(m_copy_pos, m_pos);
 			if (m_d <= 10){
 				m_state = State::DEATH;
 			}
@@ -126,6 +127,16 @@ void CBullet::Effect(AppEnv &app_env,Random &random){
 			else{
 				++it;
 			}
+		}
+	}
+}
+
+void CBullet::Hit(){
+	if (!m_ishit){ return; }
+	else if (m_ishit){
+		if (m_state == State::LIVE){
+			m_state = State::NONE;
+			m_ishit = false;
 		}
 	}
 }

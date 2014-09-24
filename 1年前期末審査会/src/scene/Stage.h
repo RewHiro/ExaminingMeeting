@@ -5,6 +5,7 @@
 #include <list>
 
 class Object;
+class CPlayer;
 class CollisionManager;
 
 //========================================
@@ -18,12 +19,15 @@ public:
 	void Update(AppEnv &,Random &);
 	void Draw(AppEnv &);
 
-	static std::unique_ptr<Object>m_player;
-	static std::vector<std::unique_ptr<Object>>m_star;
-	static std::list<std::unique_ptr<Object>>m_enemy;
+	//　静的領域はプログラム終了時に必ず解放される？
+	//　スマートポインタでスコープを抜けても解放されない？
+	std::unique_ptr<CPlayer>m_player;
+	std::vector<std::unique_ptr<Object>>m_star;
+	std::list<std::shared_ptr<Object>>m_enemy;
 
 private:
 	u_int count;
 	void CreateEnemy();										//　敵の生成
+	void Collision();
 };
 
