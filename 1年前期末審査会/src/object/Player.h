@@ -4,7 +4,7 @@ class CPlayer : public Object{
 public:
 	CPlayer();
 	~CPlayer();
-	std::list<std::shared_ptr<Object>>m_bullet;
+	std::list<std::unique_ptr<Object>>m_bullet;
 
 	void Update(AppEnv &, Random &);		//　更新
 	void Draw(AppEnv &);					//　描画

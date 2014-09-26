@@ -7,10 +7,12 @@
 #include <ctime>
 
 int main() {
-  // アプリウインドウの準備
+
+	// アプリウインドウの準備
 	AppEnv app_env(CScene::WIDTH, CScene::HEIGHT,
-                 false, true);
-  CSceneManager *scene_mgr = CSceneManager::GetInstance();
+		false, true);
+
+	std::unique_ptr<CSceneManager>scene_mgr(CSceneManager::GetInstance());
 
   //　リソースの読み込み
   CLoad load;
@@ -24,5 +26,4 @@ int main() {
 	scene_mgr->Update(app_env,random);
 	scene_mgr->Draw(app_env);
   }
-  delete scene_mgr;
 }

@@ -9,7 +9,8 @@ public:
 protected:
 	float m_theta;
 	int m_speed;
-	std::vector<std::unique_ptr<Object>>m_fireworks;
+	std::list<std::unique_ptr<Object>>m_fireworks;
+	std::list<std::unique_ptr<Object>>m_bullet;
 	Color m_color;
 
 	void Death();								//@€–Sˆ—

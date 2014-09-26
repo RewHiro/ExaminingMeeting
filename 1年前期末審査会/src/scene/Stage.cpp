@@ -6,9 +6,7 @@
 #include "../Collision.h"
 #include "../object/Bullet.h"
 
-//std::unique_ptr<Object>CStage::m_player;
-//std::vector<std::unique_ptr<Object>>CStage::m_star;
-//std::list<std::shared_ptr<Object>>CStage::m_enemy;
+
 
 const int STAR_NUM = 80;
 
@@ -55,7 +53,7 @@ void CStage::Draw(AppEnv &app_env){
 
 void CStage::CreateEnemy(){
 	if (count == 60){
-		m_enemy.emplace_back(std::make_shared<CNormalEnemy>(Vec2f(0, 400)));
+		m_enemy.emplace_back(std::make_unique<CNormalEnemy>(Vec2f(0, 400)));
 	}
 }
 
@@ -69,6 +67,7 @@ void CStage::Collision(){
 			}
 		}
 	}
+
 	for (auto &Enemy : m_enemy){
 		if (Enemy->GetState() == Object::State::LIVE){
 			for (auto & Bullet : m_player->m_bullet){

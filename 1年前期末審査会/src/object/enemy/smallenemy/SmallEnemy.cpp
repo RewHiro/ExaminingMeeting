@@ -10,7 +10,6 @@ CSmallEnemy::CSmallEnemy(){
 	m_r = Vec2f(32, 32);
 }
 
-
 CSmallEnemy::~CSmallEnemy(){
 }
 

@@ -93,7 +93,7 @@ void CPlayer::Death(){
 void CPlayer::CreateBullet(){
 	if (m_state == State::NONE){ return; }
 	else if (m_state == State::LIVE){
-		m_bullet.emplace_back(std::make_shared<CBullet>(m_pos, color256(255,255,0), static_cast<float>(M_PI_2), Vec2f(8.0f, 8.0f), CBullet::Type::NORMAL, 15.0f, Vec2f(0, 0), CBullet::Scene::STAGE));
+		m_bullet.emplace_back(std::make_unique<CBullet>(m_pos, color256(255, 255, 0), static_cast<float>(M_PI_2), Vec2f(8.0f, 8.0f), CBullet::Type::NORMAL, 15.0f, Vec2f(0, 0), CBullet::Scene::STAGE));
 	}
 }
 

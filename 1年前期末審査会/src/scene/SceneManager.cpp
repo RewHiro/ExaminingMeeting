@@ -19,10 +19,10 @@ void CSceneManager::Transition(Random &random){
 	m_scene.reset();
 	switch (m_now_scene){
 	case Scene::TITLE:
-		m_scene = std::make_shared<CTitle>();
+		m_scene = std::make_unique<CTitle>();
 		break;
 	case Scene::STAGE:
-		m_scene = std::make_shared<CStage>(random);
+		m_scene = std::make_unique<CStage>(random);
 		break;
 	case Scene::GAMECLEAR:
 		break;

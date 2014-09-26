@@ -23,7 +23,7 @@ public:
 	//　スマートポインタでスコープを抜けても解放されない？
 	std::unique_ptr<CPlayer>m_player;
 	std::vector<std::unique_ptr<Object>>m_star;
-	std::list<std::shared_ptr<Object>>m_enemy;
+	std::list<std::unique_ptr<Object>>m_enemy;
 
 private:
 	u_int count;

@@ -9,8 +9,8 @@
 
 class CScene{
 public:
-	CScene(){}
-	virtual ~CScene(){}
+	CScene() = default;
+	virtual ~CScene() = default;
 	virtual void Update(AppEnv &,Random &) = 0;
 	virtual void Draw(AppEnv &) = 0;
 
@@ -57,7 +57,7 @@ private:
 		UPDATE
 	};
 
-	std::shared_ptr<CScene> m_scene;		//　シーンを入れる箱
+	std::unique_ptr<CScene> m_scene;		//　シーンを入れる箱
 	static Scene m_now_scene;				//　現在のシーン(静的にして他でも変えられるようになってしまってる)
 	Scene m_old_scene;						//　遷移する前のシーン
 	State m_state;							//　現在の状態
